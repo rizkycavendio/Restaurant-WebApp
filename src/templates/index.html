@@ -5,7 +5,9 @@
       <title>Restaurant Apps</title>
     </head>
     <body>
+      <!-- header -->
       <header>
+        <!-- navigasi menu -->
         <nav class="navbar">
             <div class="left">
                 <div class="logo">Mangan Sek!</div>
@@ -17,7 +19,7 @@
                     <li><a href="#">About Us</a></li>
                 </ul>
             </div>
-            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">&#9776;</div>
+            <div class="mobile-menu-toggle">&#9776;</div>
             <div class="mobile-menu" id="mobileMenu">
               <ul class="mobile-nav-list">
                 <li><a href="#">Home</a></li>
@@ -27,6 +29,7 @@
             </div>
             
         </nav>
+        <!-- jumbotron -->
         <div class="jumbotron">
           <div class="slide-container">
               <img src="./images/heros/hero-image_1.jpg" alt="" class="slide active">
@@ -34,38 +37,90 @@
               <img src="./images/heros/hero-image_3.jpg" alt="" class="slide">
           </div>
           <!-- Tombol navigasi jumbotron -->
-          <div class="nav-button" onclick="prevSlide()">&#8249;</div>
-          <div class="nav-button" onclick="nextSlide()">&#8250;</div>
-      </div>
+          <div class="nav-button" id="prevButton">&#8249;</div>
+          <div class="nav-button" id="nextButton">&#8250;</div>
+       </div>
     </header>
-    <main>
-      <!--  -->
-    </main>
-    <!-- script untuk jumbotron slider -->
-    <script>
-      let currentSlide = 0;
-      const slides = document.querySelectorAll('.slide');
-
-      function showSlide(slideIndex) {
-          slides[currentSlide].classList.remove('active');
-          currentSlide = (slideIndex + slides.length) % slides.length;
-          slides[currentSlide].classList.add('active');
-      }
-
-      function prevSlide() {
-          showSlide(currentSlide - 1);
-      }
-
-      function nextSlide() {
-          showSlide(currentSlide + 1);
-      }
-    </script>
-    <!-- script untuk hamburger menu (mobile) -->
-    <script>
-      function toggleMobileMenu() {
-        const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
-      }
-    </script>
+    <!-- main dan aside -->
+    <div class="container">
+      <main>
+        <div class="restaurant-grid">
+          <!-- isi -->
+        </div>
+      </main>
+      <aside>
+        <div class="cart">
+          <h2>Keranjang Pesanan</h2>
+          <ul>
+            <li>
+              <label for="fullName">Nama Lengkap:</label>
+              <input type="text" id="fullName" name="fullName" aria-label="Nama Lengkap">
+            </li>
+            <li>
+              <label for="address">Alamat:</label>
+              <textarea id="address" name="address" aria-label="Alamat"></textarea>
+            </li>
+            <li>
+              <label for="restaurantName">Nama Restaurant:</label>
+              <select id="restaurantName" name="restaurantName" aria-label="Nama Restaurant">
+                <option value="menu1">Bebek Goreng</option>
+                <option value="menu2">Ayam Bakar</option>
+                <option value="menu2">Soto Betawi</option>
+                <option value="menu2">Tahu Campur</option>
+                <option value="menu2">Pangsit Goreng</option>
+                <!-- Tambahkan opsi menu lainnya -->
+              </select>
+            </li>
+            <li>
+              <label for="selectedMenu">Menu yang Dipilih:</label>
+              <select id="selectedMenu" name="selectedMenu" aria-label="Menu yang Dipilih">
+                <option value="menu1">Menu 1</option>
+                <option value="menu2">Menu 2</option>
+                <!-- Tambahkan opsi menu lainnya -->
+              </select>
+            </li>
+            <li>
+              <label for="orderDate">Tanggal Pemesanan:</label>
+              <input type="date" id="orderDate" name="orderDate" aria-label="Tanggal Pemesanan">
+            </li>
+            <li>
+              <label for="bankTransfer">Pilihan Bank Transfer:</label>
+              <select id="bankTransfer" name="bankTransfer" aria-label="Pilihan Bank Transfer">
+                <option value="bank1">Bank 1</option>
+                <option value="bank2">Bank 2</option>
+                <!-- Tambahkan pilihan bank lainnya -->
+              </select>
+            </li>
+            <li>
+              <fieldset>
+                <legend>Pembayaran:</legend>
+                <label>
+                  <input type="radio" name="payment" value="tunai" aria-labelledby="paymentLabel">
+                  Tunai
+                </label>
+                <label>
+                  <input type="radio" name="payment" value="non-tunai" aria-labelledby="paymentLabel">
+                  Non Tunai
+                </label>
+              </fieldset>
+            </li>
+            <li>
+              <label>
+                <input type="checkbox" id="agreement" name="agreement" aria-labelledby="agreementLabel">
+                Saya Menyetujui Pemesanan
+              </label>
+            </li>
+          </ul>
+          <button id="checkoutButton">Pesan</button>
+        </div>
+      </aside>
+    </div>
+    <!-- footer -->
+    <footer>
+        <div class="footer-description">
+          <h6>&copy; Copyright 2023 Muhammad Rizky Cavendio F284YB009</h6>
+        </div>
+    </footer>   
+    <script src="app.bundle.js" type="module"></script>
     </body>
   </html>
