@@ -10,12 +10,16 @@ export function loadMainContent(restaurants) {
     restaurantCard.className = 'restaurant-card';
     restaurantCard.tabIndex = 0;
 
+    // Tambahkan ikon bintang dan gedung menggunakan font-awesome
+    const ratingIcon = '<i class="fas fa-star star-icon"></i>';
+    const cityIcon = '<i class="fas fa-building"></i>';
+
     restaurantCard.innerHTML = `
       <img src="${restaurant.pictureId}" alt="${restaurant.name}">
       <h2>${restaurant.name}</h2>
-      <p>Kota: ${restaurant.city}</p>
-      <p>Rating: ${restaurant.rating}</p>
-      <p class="description">${restaurant.description}</p>
+      <p>${cityIcon} Kota ${restaurant.city}</p>
+      <p>${ratingIcon} ${restaurant.rating}</p>
+      <button class="detail-button">Detail</button>
     `;
 
     restaurantCard.addEventListener('keydown', (event) => {
@@ -26,6 +30,31 @@ export function loadMainContent(restaurants) {
       } else if (event.key === 'ArrowLeft' && index > 0) {
         restaurants[index - 1].focus();
       }
+    });
+
+    const detailButton = restaurantCard.querySelector('.detail-button');
+    detailButton.addEventListener('click', () => {
+      // Buat modal
+      const modal = document.createElement('div');
+      modal.className = 'modal';
+
+      const modalContent = document.createElement('div');
+      modalContent.className = 'modal-content';
+
+      modalContent.innerHTML = `
+        <h3>${restaurant.name}</h3>
+        <p>${restaurant.description}</p>
+        <button class="close-modal-button">Tutup</button>
+      `;
+
+      modal.appendChild(modalContent);
+      main.appendChild(modal);
+
+      // Atur event listener untuk tombol "Tutup" modal
+      const closeModalButton = modalContent.querySelector('.close-modal-button');
+      closeModalButton.addEventListener('click', () => {
+        main.removeChild(modal);
+      });
     });
 
     restaurantGrid.appendChild(restaurantCard);

@@ -23,9 +23,9 @@ header {
   padding: 10px 20px;
 }
 
-.logo {
-  font-size: 24px;
-  font-weight: bold;
+.logo img{
+  max-width: 150px;
+  padding: 10px;
 }
 
 .nav-list {
@@ -45,6 +45,7 @@ header {
 
 .nav-list li a:hover {
   text-decoration: underline;
+  color: #FFBD59;
 }
 
 .jumbotron {
@@ -111,7 +112,7 @@ header {
   display: none;
   position: absolute;
   background-color: #333;
-  top: 30px;
+  top: 90px;
   right: 0;
   width: 200px;
   height: 100vh;
@@ -135,21 +136,13 @@ header {
   color: #fff;
 }
 
-footer {
-  background-color: #333;
-  color: #fff;
-  text-align: center;
-  padding: 10px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 200px;
+.mobile-nav-list li a:hover {
+  text-decoration: underline;
+  color: #FFBD59;
 }
 
-footer p {
-  margin: 0;
-  font-size: 100px;
-  text-align: center;
+.star-icon {
+  color: #ffe234;
 }
 
 /* Untuk layar berukuran 769px atau lebih besar (Desktop/Tablet) */
@@ -226,9 +219,10 @@ footer p {
     padding: 5px;
   }
 
-  .cart h2 {
-    font-size: 1.5em;
+  .cart h1 {
+    font-size: 22px;
     margin-bottom: 10px;
+    margin-top: 0;
   }
 
   .cart ul {
@@ -256,7 +250,7 @@ footer p {
   }
 
   #checkoutButton {
-    background-color: #007bff;
+    background-color: #FFBD59;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -266,12 +260,53 @@ footer p {
   }
 
   #checkoutButton:hover {
-    background-color: #0056b3;
+    background-color: #e48900;
+  }
+
+  footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .footer-description {
+    margin-bottom: 10px;
+    margin-right: 20px;
+    flex-grow: 1;
+    text-align: center;
+  }
+  
+  h6 {
+    font-size: 14px;
+  }
+  
+  iframe {
+    border: none;
+    width: 100%;
+    height: 300px;
+  }
+  
+  .map {
+    width: 50%;
+    margin-left: 20px;
+    margin-right: 50px;
+  }
+  
+  .map h1{
+    font-size: 15px;
+    align-items: end;
   }
 }
 
 /* Untuk layar berukuran kurang dari atau sama dengan 768px (seukuran HP) */
 @media screen and (max-width: 768px) {
+  .logo img{
+    max-width: 80px;
+    padding: 10px;
+  }
   .jumbotron{
     height: 200px;
   }
@@ -308,13 +343,14 @@ footer p {
   .restaurant-grid {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-evenly;
   }
 
   .restaurant-card {
-    flex: 1;
+    flex-basis: calc(40% - 20px);
+    margin: 10px;
     border: 1px solid #ccc;
     padding: 10px;
-    margin: 10px;
     border-radius: 5px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -377,7 +413,7 @@ footer p {
   }
 
   #checkoutButton {
-    background-color: #007bff;
+    background-color: #FFBD59;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -387,6 +423,97 @@ footer p {
   }
 
   #checkoutButton:hover {
-    background-color: #0056b3;
+    background-color: #e48900;
+  }
+
+  .modal-content p{
+    font-size: 12px;
+  }
+
+  footer {
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column; /* Mengubah arah tata letak menjadi vertikal */
+    align-items: center; /* Pusatkan secara horizontal */
+    text-align: center; /* Pusatkan teks horizontal */
+  }
+  
+  .footer-description {
+    margin-top: 10px; /* Mengubah margin atas */
+  }
+  
+  /* Styling untuk teks hak cipta */
+  h6 {
+    font-size: 14px;
+  }
+  
+  /* Styling untuk iframe peta */
+  iframe {
+    border: none;
+    width: 100%;
+    height: 300px;
+  }
+  
+  /* Styling untuk judul peta */
+  .map h1 {
+    font-size: 15px;
+    margin-bottom: 10px; /* Tambahkan margin bawah pada judul */
   }
 }
+
+/* CSS untuk tombol "Detail" */
+.detail-button {
+  background-color: #FFBD59;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.detail-button:hover {
+  background-color: #e48900;
+}
+
+/* CSS untuk modal */
+.modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; 
+}
+
+.modal-content {
+  width: 50%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  align-items: center;
+}
+
+
+.close-modal-button {
+  background-color: #ccc;
+  color: #000;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.close-modal-button:hover {
+  background-color: #999;
+}
+

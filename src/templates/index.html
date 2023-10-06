@@ -3,6 +3,8 @@
     <head>
       <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
       <title>Restaurant Apps</title>
+      <!--Font Awesome CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     </head>
     <body>
       <!-- header -->
@@ -10,7 +12,9 @@
         <!-- navigasi menu -->
         <nav class="navbar">
             <div class="left">
-                <div class="logo">Mangan Sek!</div>
+                <div class="logo">
+                  <img src="./images/logo-web.png" alt="logo">
+                </div>
             </div>
             <div class="right">
                 <ul class="nav-list">
@@ -40,7 +44,7 @@
           <div class="nav-button" id="prevButton">&#8249;</div>
           <div class="nav-button" id="nextButton">&#8250;</div>
        </div>
-    </header>
+      </header>
     <!-- main dan aside -->
     <div class="container">
       <main>
@@ -50,7 +54,9 @@
       </main>
       <aside>
         <div class="cart">
-          <h2>Keranjang Pesanan</h2>
+          <h1>
+            <i class="fas fa-shopping-cart"></i> Keranjang Pesanan
+          </h1>
           <ul>
             <li>
               <label for="fullName">Nama Lengkap:</label>
@@ -63,11 +69,15 @@
             <li>
               <label for="restaurantName">Nama Restaurant:</label>
               <select id="restaurantName" name="restaurantName" aria-label="Nama Restaurant">
-                <option value="menu1">Bebek Goreng</option>
-                <option value="menu2">Ayam Bakar</option>
-                <option value="menu2">Soto Betawi</option>
-                <option value="menu2">Tahu Campur</option>
-                <option value="menu2">Pangsit Goreng</option>
+                <option value="menu1">Bring Your Phone Cafe</option>
+                <option value="menu2">Run The Gun</option>
+                <option value="menu2">Pangsit Express</option>
+                <option value="menu2">Ducky Duck</option>
+                <option value="menu2">Kafein</option>
+                <option value="menu2">Saya Suka</option>
+                <option value="menu2">Gigitan Cepat</option>
+                <option value="menu2">Fairy Cafe</option>
+
                 <!-- Tambahkan opsi menu lainnya -->
               </select>
             </li>
@@ -76,6 +86,9 @@
               <select id="selectedMenu" name="selectedMenu" aria-label="Menu yang Dipilih">
                 <option value="menu1">Menu 1</option>
                 <option value="menu2">Menu 2</option>
+                <option value="menu2">Menu 3</option>
+                <option value="menu2">Menu 4</option>
+                <option value="menu2">Menu 5</option>
                 <!-- Tambahkan opsi menu lainnya -->
               </select>
             </li>
@@ -84,10 +97,14 @@
               <input type="date" id="orderDate" name="orderDate" aria-label="Tanggal Pemesanan">
             </li>
             <li>
-              <label for="bankTransfer">Pilihan Bank Transfer:</label>
+              <label for="bankTransfer">Pilihan Pembayaran:</label>
               <select id="bankTransfer" name="bankTransfer" aria-label="Pilihan Bank Transfer">
-                <option value="bank1">Bank 1</option>
-                <option value="bank2">Bank 2</option>
+                <option value="bank2">COD</option>
+                <option value="bank1">Bank BRI</option>
+                <option value="bank2">Bank BNI</option>
+                <option value="bank2">Bank JAGO</option>
+                <option value="bank2">Bank Bangtut</option>
+                <option value="bank2">Bank KOANG</option>
                 <!-- Tambahkan pilihan bank lainnya -->
               </select>
             </li>
@@ -117,10 +134,14 @@
     </div>
     <!-- footer -->
     <footer>
-        <div class="footer-description">
-          <h6>&copy; Copyright 2023 Muhammad Rizky Cavendio F284YB009</h6>
-        </div>
-    </footer>   
+      <div class="map">
+        <h1>Peta & Alamat Perusahaan:</h1>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126646.20960979542!2d112.63028191963222!3d-7.275612006286057!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fbf8381ac47f%3A0x3027a76e352be40!2sSurabaya%2C%20East%20Java!5e0!3m2!1sen!2sid!4v1696634292920!5m2!1sen!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Peta Lokasi Restaurant"></iframe>
+      </div>
+      <div class="footer-description">
+        <h6>&copy; Copyright 2023 Muhammad Rizky Cavendio F284YB009</h6>
+      </div>
+    </footer>
     <script src="app.bundle.js" type="module"></script>
     </body>
   </html>
