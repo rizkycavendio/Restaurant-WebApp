@@ -1,19 +1,71 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Restaurant Apps</title>
-  </head>
-  <body>
-    <h1>Restaurant Apps Starter Project</h1>
-    <p>Hallo coders! Anda berhasil menjalankan starter project.</p>
-    <p>
-      Jangan lupa untuk menggunakan salah satu gambar yang berada pada ./images/heros
-      sebagai background hero elemen.
-    </p>
-    <img src="./images/heros/hero-image_1.jpg" width="450" alt="" />
-    <img src="./images/heros/hero-image_2.jpg" width="450" alt="" />
-    <img src="./images/heros/hero-image_3.jpg" width="450" alt="" />
-    <img src="./images/heros/hero-image_4.jpg" width="450" alt="" />
-  </body>
-</html>
+  <!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
+      <title>Restaurant Apps</title>
+    </head>
+    <body>
+      <header>
+        <nav class="navbar">
+            <div class="left">
+                <div class="logo">Mangan Sek!</div>
+            </div>
+            <div class="right">
+                <ul class="nav-list">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Favorite</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+            </div>
+            <div class="mobile-menu-toggle" onclick="toggleMobileMenu()">&#9776;</div>
+            <div class="mobile-menu" id="mobileMenu">
+              <ul class="mobile-nav-list">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Favorite</a></li>
+                <li><a href="#">About Us</a></li>
+              </ul>
+            </div>
+            
+        </nav>
+        <div class="jumbotron">
+          <div class="slide-container">
+              <img src="./images/heros/hero-image_1.jpg" alt="" class="slide active">
+              <img src="./images/heros/hero-image_2.jpg" alt="" class="slide">
+              <img src="./images/heros/hero-image_3.jpg" alt="" class="slide">
+          </div>
+          <!-- Tombol navigasi jumbotron -->
+          <div class="nav-button" onclick="prevSlide()">&#8249;</div>
+          <div class="nav-button" onclick="nextSlide()">&#8250;</div>
+      </div>
+    </header>
+    <main>
+      <!--  -->
+    </main>
+    <!-- script untuk jumbotron slider -->
+    <script>
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.slide');
+
+      function showSlide(slideIndex) {
+          slides[currentSlide].classList.remove('active');
+          currentSlide = (slideIndex + slides.length) % slides.length;
+          slides[currentSlide].classList.add('active');
+      }
+
+      function prevSlide() {
+          showSlide(currentSlide - 1);
+      }
+
+      function nextSlide() {
+          showSlide(currentSlide + 1);
+      }
+    </script>
+    <!-- script untuk hamburger menu (mobile) -->
+    <script>
+      function toggleMobileMenu() {
+        const mobileMenu = document.getElementById('mobileMenu');
+        mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+      }
+    </script>
+    </body>
+  </html>

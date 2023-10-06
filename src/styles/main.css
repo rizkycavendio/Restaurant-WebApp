@@ -1,3 +1,164 @@
 img {
   display: block;
 }
+img {
+  display: block;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+
+.nav-list li {
+  margin: 0 20px;
+}
+
+.nav-list li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.nav-list li a:hover {
+  text-decoration: underline;
+}
+
+.jumbotron {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 500px;
+}
+
+.slide-container {
+  width: 400%;
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  width: 25%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background-color: #333;
+}
+
+.nav-button:first-child {
+  left: 0;
+}
+
+.nav-button:last-child {
+  right: 0;
+}
+
+@media (min-width: 1200px) {
+  .slide {
+    min-width: 1000px;
+    width: 25%;
+  }
+}
+
+@media (max-width: 1199px) {
+  .slide {
+    width: 100%;
+  }
+}
+
+.mobile-menu {
+  display: none;
+  position: absolute;
+  background-color: #333;
+  top: 30px;
+  right: 0;
+  width: 200px;
+  height: 100vh;
+  z-index: 1;
+  overflow-y: scroll;
+}
+
+
+.mobile-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mobile-nav-list li {
+  padding: 10px;
+  text-align: center;
+}
+
+.mobile-nav-list li a {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Tampilkan navbar biasa pada layar besar */
+@media screen and (min-width: 769px) {
+  .nav-list {
+    display: flex;
+  }
+
+  .mobile-menu-toggle,
+  .mobile-menu {
+    display: none;
+  }
+}
+
+/* Tampilkan navbar mobile pada layar kecil */
+@media screen and (max-width: 768px) {
+  .nav-list {
+    display: none;
+  }
+
+  .mobile-menu-toggle,
+  .mobile-menu {
+    display: block;
+  }
+}
+
+
+
+
