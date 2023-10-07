@@ -2,11 +2,13 @@
   <html lang="en">
     <head>
       <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1"/>
-      <title>Restaurant Apps</title>
+      <title>Pawon Wong Jowo</title>
       <!--Font Awesome CSS -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     </head>
     <body>
+      <!-- Tautan "Skip to Content" -->
+      <a href="#main-content" class="skip-link">Menuju ke konten</a>
       <!-- header -->
       <header>
         <!-- navigasi menu -->
@@ -16,42 +18,45 @@
                   <img src="./images/logo-web.png" alt="logo">
                 </div>
             </div>
+            <!-- versi desktop -->
             <div class="right">
                 <ul class="nav-list">
-                    <li><a href="#">Home</a></li>
+                    <li><a href="http://localhost:8080/">Home</a></li>
                     <li><a href="#">Favorite</a></li>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="https://www.linkedin.com/in/muhammad-rizky-cavendio-218645238/">About Us</a></li>
                 </ul>
             </div>
+            <!-- versi mobile / hamburger menu -->
             <div class="mobile-menu-toggle">&#9776;</div>
             <div class="mobile-menu" id="mobileMenu">
               <ul class="mobile-nav-list">
-                <li><a href="#">Home</a></li>
+                <li><a href="http://localhost:8080/">Home</a></li>
                 <li><a href="#">Favorite</a></li>
-                <li><a href="#">About Us</a></li>
+                <li><a href="https://www.linkedin.com/in/muhammad-rizky-cavendio-218645238/">About Us</a></li>
               </ul>
             </div>
-            
         </nav>
         <!-- jumbotron -->
-        <div class="jumbotron">
+        <div class="jumbotron" aria-label="Gambar-gambar hero" role="region" tabindex="0">
           <div class="slide-container">
-              <img src="./images/heros/hero-image_1.jpg" alt="" class="slide active">
-              <img src="./images/heros/hero-image_2.jpg" alt="" class="slide">
-              <img src="./images/heros/hero-image_3.jpg" alt="" class="slide">
+              <img src="./images/heros/hero-image_1.jpg" alt="gambar-slider-1" class="slide active">
+              <img src="./images/heros/hero-image_2.jpg" alt="gambar-slider-2" class="slide">
+              <img src="./images/heros/hero-image_3.jpg" alt="gambar-slider-3" class="slide">
           </div>
           <!-- Tombol navigasi jumbotron -->
-          <div class="nav-button" id="prevButton">&#8249;</div>
-          <div class="nav-button" id="nextButton">&#8250;</div>
-       </div>
+          <div class="nav-button" id="prevButton" aria-label="Tombol Sebelumnya" tabindex="0">&#8249;</div>
+          <div class="nav-button" id="nextButton" aria-label="Tombol Selanjutnya" tabindex="0">&#8250;</div>
+        </div>
       </header>
     <!-- main dan aside -->
     <div class="container">
-      <main>
+      <!-- main -->
+      <main id="main-content">
         <div class="restaurant-grid">
           <!-- isi -->
         </div>
       </main>
+      <!-- aside -->
       <aside>
         <div class="cart">
           <h1>
@@ -128,7 +133,7 @@
               </label>
             </li>
           </ul>
-          <button id="checkoutButton">Pesan</button>
+          <button id="checkoutButton" aria-label="Pesan makanan dari keranjang pesanan">Pesan</button>
         </div>
       </aside>
     </div>

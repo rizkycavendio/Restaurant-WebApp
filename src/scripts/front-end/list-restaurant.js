@@ -10,7 +10,6 @@ export function loadMainContent(restaurants) {
     restaurantCard.className = 'restaurant-card';
     restaurantCard.tabIndex = 0;
 
-    // Tambahkan ikon bintang dan gedung menggunakan font-awesome
     const ratingIcon = '<i class="fas fa-star star-icon"></i>';
     const cityIcon = '<i class="fas fa-building"></i>';
 

@@ -1,9 +1,25 @@
+// Variabel
+$primary-color: #333;
+$highlight-color: #FFBD59;
+
+// Mixin
+@mixin media-desktop {
+  @media (min-width: 769px) {
+    @content;
+  }
+}
+
+@mixin media-mobile {
+  @media (max-width: 768px) {
+    @content;
+  }
+}
+
+// Kode SCSS
 img {
   display: block;
 }
-img {
-  display: block;
-}
+
 body {
   margin: 0;
   padding: 0;
@@ -11,8 +27,22 @@ body {
   flex-wrap: wrap;
 }
 
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background-color: #bf1722;
+  color: white;
+  padding: 8px;
+  z-index: 100;
+}
+ 
+.skip-link:focus {
+   top: 0;
+}
+
 header {
-  background-color: #333;
+  background-color: $primary-color;
   color: #fff;
 }
 
@@ -23,7 +53,7 @@ header {
   padding: 10px 20px;
 }
 
-.logo img{
+.logo img {
   max-width: 150px;
   padding: 10px;
 }
@@ -41,11 +71,13 @@ header {
 .nav-list li a {
   text-decoration: none;
   color: #fff;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .nav-list li a:hover {
   text-decoration: underline;
-  color: #FFBD59;
+  color: $highlight-color;
 }
 
 .jumbotron {
@@ -73,6 +105,7 @@ header {
 }
 
 .nav-button {
+  font-size: 50px;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -80,11 +113,13 @@ header {
   border: none;
   color: #ffffff;
   cursor: pointer;
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   text-align: center;
-  line-height: 30px;
-  background-color: #333;
+  line-height: 38px;
+  background-color: $primary-color;
+  min-width: 44px;
+  min-height: 44px
 }
 
 .nav-button:first-child {
@@ -95,14 +130,14 @@ header {
   right: 0;
 }
 
-@media (min-width: 1200px) {
+@include media-desktop {
   .slide {
     min-width: 1000px;
     width: 25%;
   }
 }
 
-@media (max-width: 1199px) {
+@include media-mobile {
   .slide {
     width: 100%;
   }
@@ -111,7 +146,7 @@ header {
 .mobile-menu {
   display: none;
   position: absolute;
-  background-color: #333;
+  background-color: $primary-color;
   top: 90px;
   right: 0;
   width: 200px;
@@ -134,19 +169,79 @@ header {
 .mobile-nav-list li a {
   text-decoration: none;
   color: #fff;
+  min-width: 44px;
+  min-height: 44px;
 }
 
 .mobile-nav-list li a:hover {
   text-decoration: underline;
-  color: #FFBD59;
+  color: $highlight-color;
 }
 
 .star-icon {
   color: #ffe234;
 }
 
-/* Untuk layar berukuran 769px atau lebih besar (Desktop/Tablet) */
-@media screen and (min-width: 769px) {
+.detail-button {
+  background-color: #FFBD59;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  max-width: 100%;
+  max-height: 44px;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.detail-button:hover {
+  background-color: #e48900;
+}
+
+.modal {
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  width: 50%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  align-items: center;
+}
+
+.close-modal-button {
+  background-color: #ccc;
+  color: #000;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-top: 10px;
+  width: auto;
+  min-width: 44px;
+  min-height: 44px
+}
+
+.close-modal-button:hover {
+  background-color: #999;
+}
+
+// DESKTOP VERSION
+@include media-desktop {
   .nav-list {
     display: flex;
   }
@@ -209,7 +304,7 @@ header {
     border-radius: 5px;
     width: 80%;
     margin: 10px;
-    height: 100vh;
+    height: 110vh;
   }
 
   .chart {
@@ -230,7 +325,7 @@ header {
     padding: 0;
   }
 
-  .cart li{
+  .cart li {
     margin-top: 10px;
   }
 
@@ -241,12 +336,27 @@ header {
 
   .cart input[type="text"],
   .cart textarea,
-  .cart select {
+  #orderDate {
     width: 85%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    min-width: 44px;
+    min-height: 44px
+  }
+  .cart select{
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    min-width: 44px;
+    min-height: 44px
+  }
+
+  fieldset{
+    width: 83%;
   }
 
   #checkoutButton {
@@ -257,6 +367,8 @@ header {
     padding: 10px 20px;
     font-size: 1em;
     cursor: pointer;
+    min-width: 44px;
+    min-height: 44px
   }
 
   #checkoutButton:hover {
@@ -271,47 +383,67 @@ header {
     justify-content: space-between;
     align-items: center;
   }
-  
+
   .footer-description {
     margin-bottom: 10px;
     margin-right: 20px;
     flex-grow: 1;
     text-align: center;
   }
-  
+
   h6 {
     font-size: 14px;
   }
-  
+
   iframe {
     border: none;
     width: 100%;
     height: 300px;
   }
-  
+
   .map {
     width: 50%;
     margin-left: 20px;
     margin-right: 50px;
   }
-  
-  .map h1{
+
+  .map h1 {
     font-size: 15px;
     align-items: end;
   }
 }
 
-/* Untuk layar berukuran kurang dari atau sama dengan 768px (seukuran HP) */
-@media screen and (max-width: 768px) {
-  .logo img{
+// MOBILE VERSION
+@include media-mobile {
+  .logo img {
     max-width: 80px;
     padding: 10px;
   }
-  .jumbotron{
+
+  .jumbotron {
     height: 200px;
   }
+
   .nav-list {
     display: none;
+  }
+
+  .nav-button {
+    font-size: 35px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    width: 44px;
+    height: 44px;
+    text-align: center;
+    line-height: 35px;
+    background-color: $primary-color;
+    min-width: 44px;
+    min-height: 44px
   }
 
   .mobile-menu-toggle {
@@ -333,13 +465,7 @@ header {
     grid-row: 1;
     grid-column: 1;
   }
-
-  aside {
-    grid-row: 2;
-    grid-column: 1;
-    width: 100%;
-  }
-
+  
   .restaurant-grid {
     display: flex;
     flex-wrap: wrap;
@@ -362,23 +488,27 @@ header {
     margin: 0 auto;
   }
 
-  .restaurant-card img{
+  .restaurant-card img {
     max-width: 100%;
   }
 
-  .restaurant-card h2{
+  .restaurant-card h2 {
     font-size: 14px;
   }
 
-  .restaurant-card p{
+  .restaurant-card p {
     font-size: 10px;
   }
+
   aside {
+    grid-row: 2;
+    grid-column: 1;
+    width: 100%;
     background-color: #f0f0f0;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    width: 80%;
+    width: 85%;
     margin: 10px;
     height: 100vh;
   }
@@ -393,7 +523,7 @@ header {
     padding: 0;
   }
 
-  .cart li{
+  .cart li {
     margin-top: 10px;
   }
 
@@ -404,12 +534,27 @@ header {
 
   .cart input[type="text"],
   .cart textarea,
-  .cart select {
+  #orderDate {
     width: 85%;
     padding: 10px;
     margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    min-width: 44px;
+    min-height: 44px
+  }
+  .cart select{
+    width: 92%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    min-width: 44px;
+    min-height: 44px
+  }
+
+  fieldset{
+    width: 83%;
   }
 
   #checkoutButton {
@@ -420,13 +565,15 @@ header {
     padding: 10px 20px;
     font-size: 1em;
     cursor: pointer;
+    min-width: 44px;
+    min-height: 44px
   }
 
   #checkoutButton:hover {
     background-color: #e48900;
   }
 
-  .modal-content p{
+  .modal-content p {
     font-size: 12px;
   }
 
@@ -435,85 +582,29 @@ header {
     color: white;
     padding: 20px 0;
     display: flex;
-    flex-direction: column; /* Mengubah arah tata letak menjadi vertikal */
-    align-items: center; /* Pusatkan secara horizontal */
-    text-align: center; /* Pusatkan teks horizontal */
+    flex-direction: column;
+    align-items: center;
+    text-align: center; 
   }
-  
+
   .footer-description {
-    margin-top: 10px; /* Mengubah margin atas */
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
   }
-  
-  /* Styling untuk teks hak cipta */
+
   h6 {
     font-size: 14px;
   }
-  
-  /* Styling untuk iframe peta */
+
   iframe {
     border: none;
     width: 100%;
     height: 300px;
   }
-  
-  /* Styling untuk judul peta */
+
   .map h1 {
     font-size: 15px;
-    margin-bottom: 10px; /* Tambahkan margin bawah pada judul */
+    margin-bottom: 10px;
   }
 }
-
-/* CSS untuk tombol "Detail" */
-.detail-button {
-  background-color: #FFBD59;
-  color: #fff;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.detail-button:hover {
-  background-color: #e48900;
-}
-
-/* CSS untuk modal */
-.modal {
-  display: block;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; 
-}
-
-.modal-content {
-  width: 50%;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  align-items: center;
-}
-
-
-.close-modal-button {
-  background-color: #ccc;
-  color: #000;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  font-size: 14px;
-  margin-top: 10px;
-}
-
-.close-modal-button:hover {
-  background-color: #999;
-}
-
