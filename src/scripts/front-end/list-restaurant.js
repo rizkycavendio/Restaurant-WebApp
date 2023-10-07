@@ -21,9 +21,17 @@ export function loadMainContent(restaurants) {
       <button class="detail-button">Detail</button>
     `;
 
+    // Event listener untuk membuka modal saat detail-button diklik dengan kursor
+    const detailButton = restaurantCard.querySelector('.detail-button');
+    detailButton.addEventListener('click', () => {
+      openModal(restaurant);
+    });
+
+    // Event listener untuk membuka modal saat Enter atau Space ditekan
     restaurantCard.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === ' ') {
-        window.location.href = `/restaurant/${restaurant.id}`;
+        event.preventDefault();
+        openModal(restaurant);
       } else if (event.key === 'ArrowRight' && index < restaurants.length - 1) {
         restaurants[index + 1].focus();
       } else if (event.key === 'ArrowLeft' && index > 0) {
@@ -31,33 +39,32 @@ export function loadMainContent(restaurants) {
       }
     });
 
-    const detailButton = restaurantCard.querySelector('.detail-button');
-    detailButton.addEventListener('click', () => {
-      // Buat modal
-      const modal = document.createElement('div');
-      modal.className = 'modal';
-
-      const modalContent = document.createElement('div');
-      modalContent.className = 'modal-content';
-
-      modalContent.innerHTML = `
-        <h3>${restaurant.name}</h3>
-        <p>${restaurant.description}</p>
-        <button class="close-modal-button">Tutup</button>
-      `;
-
-      modal.appendChild(modalContent);
-      main.appendChild(modal);
-
-      // Atur event listener untuk tombol "Tutup" modal
-      const closeModalButton = modalContent.querySelector('.close-modal-button');
-      closeModalButton.addEventListener('click', () => {
-        main.removeChild(modal);
-      });
-    });
-
     restaurantGrid.appendChild(restaurantCard);
   });
 
   main.appendChild(restaurantGrid);
+}
+
+function openModal(restaurant) {
+  // Buat modal
+  const modal = document.createElement('div');
+  modal.className = 'modal';
+
+  const modalContent = document.createElement('div');
+  modalContent.className = 'modal-content';
+
+  modalContent.innerHTML = `
+    <h3>${restaurant.name}</h3>
+    <p>${restaurant.description}</p>
+    <button class="close-modal-button">Tutup</button>
+  `;
+
+  modal.appendChild(modalContent);
+  document.body.appendChild(modal);
+
+  // Atur event listener untuk tombol "Tutup" modal
+  const closeModalButton = modalContent.querySelector('.close-modal-button');
+  closeModalButton.addEventListener('click', () => {
+    document.body.removeChild(modal);
+  });
 }
