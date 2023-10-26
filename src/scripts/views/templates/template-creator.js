@@ -31,7 +31,6 @@ export function createRestaurantCard(restaurant) {
 
   const detailButton = restaurantCard.querySelector('.detail-button');
   detailButton.addEventListener('click', () => {
-    // Buat URL detail sesuai dengan id restoran
     const detailUrl = `/detail/${restaurant.id}`;
 
     page(detailUrl);
@@ -81,8 +80,10 @@ export function createDetailRestaurant(restaurant) {
     `;
 
   detailRestaurant.addEventListener('click', async (event) => {
-    if (event.target.classList.contains('favorit-button')) {
-      const restaurantId = event.target.getAttribute('data-restaurant-id');
+    const { target } = event;
+    if (target.classList.contains('favorit-button')) {
+      const restaurantId = target.getAttribute('data-restaurant-id');
+      console.log('Restaurant ID:', restaurantId);
 
       const restaurantData = {
         id: restaurantId,
@@ -98,8 +99,7 @@ export function createDetailRestaurant(restaurant) {
       };
       await FavoriteRestaurantIdb.putRestaurant(restaurantData);
 
-      // eslint-disable-next-line no-param-reassign
-      event.target.innerHTML = '<i class="fa fa-heart" aria-hidden="true"></i>';
+      target.innerHTML = '<i class="fa fa-heart" aria-hidden="true"></i>';
     }
   });
 
@@ -117,7 +117,7 @@ export function createFavoriteRestaurant(restaurant) {
   const cityIcon = '<i class="fa fa-building"></i></i>';
 
   restaurantFavorite.innerHTML = `
-      <img src="${restaurant.image}" alt="${restaurant.name}W">
+      <img src="${restaurant.image}" alt="${restaurant.name}">
       <h2>${restaurant.name}</h2>
       <p>${cityIcon} Kota ${restaurant.city}</p>
       <p>${ratingIcon} ${restaurant.rating}</p>

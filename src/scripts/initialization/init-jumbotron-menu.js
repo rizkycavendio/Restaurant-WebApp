@@ -1,5 +1,5 @@
 import { prevSlide, nextSlide } from '../front-end/jumbotron';
-import { toggleMobileMenu } from '../front-end/nav-mobile';
+import toggleMobileMenu from '../front-end/nav-mobile';
 
 function initializeSliderAndMenu() {
   // Jumbotron
@@ -10,7 +10,6 @@ function initializeSliderAndMenu() {
 
   // hamburger button
   const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-  // eslint-disable-next-line no-undef
   mobileMenuToggle.onclick = toggleMobileMenu;
 }
 

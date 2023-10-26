@@ -1,4 +1,4 @@
-import { isFormValid, initializeForm } from '../front-end/from';
+import { isFormValid, initializeForm } from '../front-end/form';
 
 function initializeFormAndValidate() {
   // form

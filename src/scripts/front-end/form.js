@@ -36,10 +36,8 @@ export function initializeForm() {
 
   checkoutButton.addEventListener('click', () => {
     if (isFormValid()) {
-      // eslint-disable-next-line no-alert
       alert('PESANAN ANDA SEDANG KAMI PROSES, SILAHKAN MENUNGGU. Terimakasih sudah menggunakan jasa Pawon Wong Jowo Apss');
     } else {
-      // eslint-disable-next-line no-alert
       alert('Harap Isi seluruh form pemesanan dengan lengkap');
     }
   });

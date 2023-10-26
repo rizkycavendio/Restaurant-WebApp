@@ -3,5 +3,4 @@ const toggleMobileMenu = () => {
   mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
 };
 
-// eslint-disable-next-line import/prefer-default-export
-export { toggleMobileMenu };
+export default toggleMobileMenu;
