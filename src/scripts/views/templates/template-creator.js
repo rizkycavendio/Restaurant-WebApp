@@ -1,4 +1,5 @@
 import page from 'page';
+import FavoriteRestaurantIdb from '../../data/favorite-restaurant-db';
 
 export function createRestaurantGrid() {
   const restaurantGrid = document.createElement('div');
@@ -74,8 +75,61 @@ export function createDetailRestaurant(restaurant) {
           `).join('')}
         </ul>
       </fieldset>
-      <button class="favorit-button">Favorit</button>
+      <button id="favorite-button" class="favorit-button" data-restaurant-id="${restaurant.id}">
+         <i class="fa fa-heart-o" aria-hidden="true"></i>
+      </button>
     `;
 
+  detailRestaurant.addEventListener('click', async (event) => {
+    if (event.target.classList.contains('favorit-button')) {
+      const restaurantId = event.target.getAttribute('data-restaurant-id');
+
+      const restaurantData = {
+        id: restaurantId,
+        name: restaurant.name,
+        rating: restaurant.rating,
+        address: restaurant.address,
+        description: restaurant.description,
+        city: restaurant.city,
+        categories: restaurant.categories,
+        menus: restaurant.menus,
+        customerReviews: restaurant.customerReviews,
+        image: `https://restaurant-api.dicoding.dev/images/large/${restaurant.pictureId}`,
+      };
+      await FavoriteRestaurantIdb.putRestaurant(restaurantData);
+
+      // eslint-disable-next-line no-param-reassign
+      event.target.innerHTML = '<i class="fa fa-heart" aria-hidden="true"></i>';
+    }
+  });
+
   return detailRestaurant;
+}
+
+export function createFavoriteRestaurant(restaurant) {
+  const restaurantGrid = document.createElement('div');
+  restaurantGrid.className = 'restaurant-grid';
+  const restaurantFavorite = document.createElement('article');
+  restaurantFavorite.className = 'restaurant-card';
+  restaurantFavorite.tabIndex = 0;
+
+  const ratingIcon = '<i class="fa fa-star star-icon"></i>';
+  const cityIcon = '<i class="fa fa-building"></i></i>';
+
+  restaurantFavorite.innerHTML = `
+      <img src="${restaurant.image}" alt="${restaurant.name}W">
+      <h2>${restaurant.name}</h2>
+      <p>${cityIcon} Kota ${restaurant.city}</p>
+      <p>${ratingIcon} ${restaurant.rating}</p>
+      <button class="detail-button">Detail</button>
+    `;
+
+  const detailButton = restaurantFavorite.querySelector('.detail-button');
+  detailButton.addEventListener('click', () => {
+    const detailUrl = `/detail/${restaurant.id}`;
+
+    page(detailUrl);
+  });
+
+  return restaurantFavorite;
 }
