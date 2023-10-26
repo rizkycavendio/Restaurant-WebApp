@@ -302,7 +302,7 @@ header {
     border-radius: 5px;
     width: 80%;
     margin: 10px;
-    height: 110vh;
+    height: 120vh;
   }
 
   .chart {
@@ -607,5 +607,92 @@ header {
   .map h1 {
     font-size: 15px;
     margin-bottom: 10px;
+  }
+}
+
+.restaurant-detail {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+
+  // Define styling for the desktop version
+  @include media-desktop {
+    width: 80%;
+  }
+
+  // Define styling for the mobile version
+  @include media-mobile {
+    width: 80%;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  h1 {
+    font-size: 30px;
+    margin: 10px 0;
+  }
+
+  h2 {
+    font-size: 18px;
+    margin: 10px 0;
+  }
+
+  p {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  .favorit-button {
+    background-color: #FFBD59;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    min-width: 44px;
+    min-height: 44px;
+    max-width: 100px;
+    max-height: 100px;
+
+    &:hover {
+      background-color: #e48900;
+    }
+  }
+
+  .rating {
+    font-size: 16px;
+    color: #ffac00;
+  }
+
+  .fieldset-container {
+    border: 1px solid #000;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .customer-review {
+    font-size: 14px;
+    margin-top: 20px;
+    padding: 0;
+  }
+
+  ul.customer-reviews-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  ul.customer-reviews-list li {
+    margin: 10px 0;
+    border: 1px solid black;
+    padding: 5px;
   }
 }
