@@ -1,6 +1,7 @@
-function toggleMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
-}
+const toggleMobileMenu = () => {
+  const mobileMenu = document.getElementById('mobileMenu');
+  mobileMenu.style.display = mobileMenu.style.display === 'block' ? 'none' : 'block';
+};
 
-export{toggleMobileMenu};
+// eslint-disable-next-line import/prefer-default-export
+export { toggleMobileMenu };
