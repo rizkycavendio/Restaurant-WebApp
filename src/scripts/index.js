@@ -3,6 +3,7 @@ import '../styles/main.scss';
 import init from './routing/routes';
 import initializeSliderAndMenu from './initialization/init-jumbotron-menu';
 import initializeFormAndValidate from './initialization/init-form';
+import swRegister from './initialization/sw-register';
 
 window.addEventListener('hashchange', () => {
   initializeSliderAndMenu();
@@ -14,4 +15,5 @@ window.addEventListener('load', async () => {
   initializeFormAndValidate();
   // init untuk routing
   init();
+  swRegister();
 });
