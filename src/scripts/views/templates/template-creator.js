@@ -1,5 +1,5 @@
 import page from 'page';
-import FavoriteRestaurantIdb from '../../data/favorite-restaurant-db';
+import FavoriteRestaurantIdb from '../../data/favorite-restaurant-idb';
 
 export function createRestaurantGrid() {
   const restaurantGrid = document.createElement('div');
@@ -57,8 +57,8 @@ export function createDetailRestaurant(restaurant) {
   detailRestaurant.innerHTML = `
       <img src="${imageUrl}" alt="${restaurant.name}" />
       <h1>${restaurant.name}</h1>
-      <p>${ratingIcon} <strong>Rating</strong>: <span class="rating">${restaurant.rating}</span></p>
-      <p>${addressIcon} <strong>Addrsess</strong>: ${restaurant.address}</p>
+      <p>${ratingIcon} <span class="rating">${restaurant.rating}</span></p>
+      <p>${addressIcon} ${restaurant.address}</p>
       <p>${descriptionIcon} <strong>Description</strong>: ${restaurant.description}</p>
       <p>${cityIcon} <strong>City</strong>: ${restaurant.city}</p>
       <p>${categoryIcon} <strong>Category</strong>: ${restaurant.categories.map((category) => category.name).join(', ')}</p>
@@ -79,11 +79,23 @@ export function createDetailRestaurant(restaurant) {
       </button>
     `;
 
+  let isFavorite = false;
+
+  FavoriteRestaurantIdb.getRestaurant(restaurant.id)
+    .then((restaurantData) => {
+      isFavorite = !!restaurantData;
+      const favoriteButton = detailRestaurant.querySelector('#favorite-button');
+      if (favoriteButton) {
+        favoriteButton.innerHTML = isFavorite
+          ? '<i class="fa fa-heart" aria-hidden="true"></i>'
+          : '<i class="fa fa-heart-o" aria-hidden="true"></i>';
+      }
+    });
+
   detailRestaurant.addEventListener('click', async (event) => {
     const { target } = event;
     if (target.classList.contains('favorit-button')) {
       const restaurantId = target.getAttribute('data-restaurant-id');
-      console.log('Restaurant ID:', restaurantId);
 
       const restaurantData = {
         id: restaurantId,
@@ -97,9 +109,17 @@ export function createDetailRestaurant(restaurant) {
         customerReviews: restaurant.customerReviews,
         image: `https://restaurant-api.dicoding.dev/images/large/${restaurant.pictureId}`,
       };
-      await FavoriteRestaurantIdb.putRestaurant(restaurantData);
 
-      target.innerHTML = '<i class="fa fa-heart" aria-hidden="true"></i>';
+      if (isFavorite) {
+        await FavoriteRestaurantIdb.deleteRestaurant(restaurantId);
+        target.innerHTML = '<i class="fa fa-heart-o" aria-hidden="true"></i>';
+      } else {
+        await FavoriteRestaurantIdb.putRestaurant(restaurantData);
+        target.innerHTML = '<i class="fa fa-heart" aria-hidden="true"></i>';
+      }
+
+      // Toggle the favorite status
+      isFavorite = !isFavorite;
     }
   });
 

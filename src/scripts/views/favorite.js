@@ -1,9 +1,8 @@
 import { createFavoriteRestaurant, createRestaurantGrid } from './templates/template-creator';
-import FavoriteRestaurantIdb from '../data/favorite-restaurant-db';
+import FavoriteRestaurantIdb from '../data/favorite-restaurant-idb';
 
 async function loadRestaurantData(restaurantData, loader, restaurantGrid) {
   try {
-    // Simulate loading data with a delay
     await new Promise((resolve) => { setTimeout(resolve, 3000); });
 
     restaurantGrid.removeChild(loader);
@@ -21,7 +20,6 @@ export default async function populateFavoriteContent() {
 
   const restaurantGrid = createRestaurantGrid();
 
-  // Tambahkan elemen loader ke dalam main content
   const loader = document.createElement('span');
   loader.className = 'loader';
   main.appendChild(loader);
@@ -29,12 +27,11 @@ export default async function populateFavoriteContent() {
   try {
     const data = await FavoriteRestaurantIdb.getAllRestaurant();
 
-    // Hapus loader ketika data sudah dimuat
     loader.style.display = 'none';
 
     if (data && data.length > 0) {
       data.forEach((restaurantData) => {
-        const innerLoader = document.createElement('span'); // Ganti nama variabel di dalam blok forEach
+        const innerLoader = document.createElement('span');
         innerLoader.className = 'loader';
         restaurantGrid.appendChild(innerLoader);
 

@@ -6,7 +6,6 @@ export default async function populateDetailContent(ctx) {
   const { id } = ctx.params;
   main.innerHTML = '';
 
-  // Tambahkan elemen loader ke dalam main content
   const loader = document.createElement('span');
   loader.className = 'loader-detail';
   main.appendChild(loader);
@@ -15,7 +14,6 @@ export default async function populateDetailContent(ctx) {
     const data = await RestaurantDbSource.detailRestaurant(id);
 
     if (data.error === false) {
-      // Tunda tampilan data selama 3 detik
       setTimeout(() => {
         const restaurantData = data.restaurant;
         const detailRestaurant = createDetailRestaurant(restaurantData);
@@ -26,8 +24,6 @@ export default async function populateDetailContent(ctx) {
       // Menampilkan pesan "Gagal dimuat" di tampilan
       main.textContent = 'Data gagal dimuat.';
     }
-
-    // Tambahkan penundaan 3 detik sebelum loader disembunyikan
     setTimeout(() => {
       loader.style.display = 'none';
     }, 3000);
