@@ -22,7 +22,7 @@ export function createRestaurantCard(restaurant) {
   const { largePictureUrl } = restaurant;
 
   restaurantCard.innerHTML = `
-      <img src="${smallPictureUrl}" alt="${restaurant.name}" srcset="${smallPictureUrl} 300w, ${mediumPictureUrl} 600w, ${largePictureUrl} 800w">
+      <img src="${smallPictureUrl}" alt="${restaurant.name}" srcset="${smallPictureUrl} 300w, ${mediumPictureUrl} 600w, ${largePictureUrl} 800w" crossorigin="anonymous">
       <h2>${restaurant.name}</h2>
       <p>${cityIcon} Kota ${restaurant.city}</p>
       <p>${ratingIcon} ${restaurant.rating}</p>
@@ -55,7 +55,7 @@ export function createDetailRestaurant(restaurant) {
   const userReview = '<i class="fa fa-user"></i>';
 
   detailRestaurant.innerHTML = `
-      <img src="${imageUrl}" alt="${restaurant.name}" />
+      <img src="${imageUrl}" alt="${restaurant.name}" crossorigin="anonymous"/>
       <h1>${restaurant.name}</h1>
       <p>${ratingIcon} <span class="rating">${restaurant.rating}</span></p>
       <p>${addressIcon} ${restaurant.address}</p>
@@ -137,7 +137,7 @@ export function createFavoriteRestaurant(restaurant) {
   const cityIcon = '<i class="fa fa-building"></i></i>';
 
   restaurantFavorite.innerHTML = `
-      <img src="${restaurant.image}" alt="${restaurant.name}">
+      <img src="${restaurant.image}" alt="${restaurant.name}" crossorigin="anonymous">
       <h2>${restaurant.name}</h2>
       <p>${cityIcon} Kota ${restaurant.city}</p>
       <p>${ratingIcon} ${restaurant.rating}</p>
