@@ -107,7 +107,7 @@ export function createDetailRestaurant(restaurant) {
         categories: restaurant.categories,
         menus: restaurant.menus,
         customerReviews: restaurant.customerReviews,
-        image: `https://restaurant-api.dicoding.dev/images/large/${restaurant.pictureId}`,
+        image: `https://restaurant-api.dicoding.dev/images/large/${restaurant.pictureId || '1'}`,
       };
 
       if (isFavorite) {
