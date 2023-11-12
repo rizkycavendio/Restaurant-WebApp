@@ -28,8 +28,8 @@
             <!-- versi desktop -->
             <div class="right">
                 <ul class="nav-list">
-                    <li><a href="http://localhost:8080/">Home</a></li>
-                    <li><a href="/favorite">Favorite</a></li>
+                    <li><a class="home" href="http://localhost:8080/">Home</a></li>
+                    <li><a class="favorite" href="/favorite">Favorite</a></li>
                     <li><a href="https://www.linkedin.com/in/muhammad-rizky-cavendio-218645238/">About Us</a></li>
                 </ul>
             </div>
@@ -37,8 +37,8 @@
             <button class="mobile-menu-toggle" tabindex="0" aria-expanded="false">&#9776;</button>
             <div class="mobile-menu" id="mobileMenu">
               <ul class="mobile-nav-list">
-                <li><a href="http://localhost:8080/">Home</a></li>
-                <li><a href="/favorite">Favorite</a></li>
+                <li><a class="home" href="http://localhost:8080/">Home</a></li>
+                <li><a class="favorite" href="/favorite">Favorite</a></li>
                 <li><a href="https://www.linkedin.com/in/muhammad-rizky-cavendio-218645238/">About Us</a></li>
               </ul>
             </div>
@@ -46,14 +46,23 @@
         <!-- jumbotron -->
         <div class="jumbotron" aria-label="Gambar-gambar hero" role="region" tabindex="0">
           <div class="slide-container">
-              <img src="./images/heros/hero-image_1.jpg" alt="gambar-slider-1" class="slide active">
-              <img src="./images/heros/hero-image_2.jpg" alt="gambar-slider-2" class="slide">
-              <img src="./images/heros/hero-image_3.jpg" alt="gambar-slider-3" class="slide">
+            <picture>
+              <source media="(max-width: 1200px)" data-srcset="./images/hero-1-small.jpg" class="lazyload">
+              <img data-src="./images/hero-1-large.jpg" alt="gambar-slider-1" class="slide active lazyload">
+            </picture>
+            <picture>
+              <source media="(max-width: 1200px)" data-srcset="./images/hero-2-small.jpg" class="lazyload">
+              <img data-src="./images/hero-2-large.jpg" alt="gambar-slider-2" class="slide lazyload">
+            </picture>
+            <picture>
+              <source media="(max-width: 1200px)" data-srcset="./images/hero-3-small.jpg" class="lazyload">
+              <img data-src="./images/hero-3-large.jpg" alt="gambar-slider-3" class="slide lazyload">
+            </picture>
           </div>
           <!-- Tombol navigasi jumbotron -->
           <div class="nav-button" id="prevButton" aria-label="Tombol Sebelumnya" tabindex="0">&#8249;</div>
           <div class="nav-button" id="nextButton" aria-label="Tombol Selanjutnya" tabindex="0">&#8250;</div>
-        </div>
+        </div>        
       </header>
     <!-- main dan aside -->
     <div class="container">

@@ -22,7 +22,12 @@ export function createRestaurantCard(restaurant) {
   const { largePictureUrl } = restaurant;
 
   restaurantCard.innerHTML = `
-      <img src="${smallPictureUrl}" alt="${restaurant.name}" srcset="${smallPictureUrl} 300w, ${mediumPictureUrl} 600w, ${largePictureUrl} 800w" crossorigin="anonymous">
+     <picture>
+      <source media="(max-width: 600px)" data-srcset="${smallPictureUrl}">
+      <source media="(max-width: 800px)" data-srcset="${mediumPictureUrl}">
+      <source media="(min-width: 801px)" data-srcset="${largePictureUrl}">
+        <img class="lazyload" data-src="${smallPictureUrl}" alt="${restaurant.name}" crossorigin="anonymous">
+     </picture>
       <h2>${restaurant.name}</h2>
       <p>${cityIcon} Kota ${restaurant.city}</p>
       <p>${ratingIcon} ${restaurant.rating}</p>
@@ -31,6 +36,7 @@ export function createRestaurantCard(restaurant) {
 
   const detailButton = restaurantCard.querySelector('.detail-button');
   detailButton.addEventListener('click', () => {
+    console.log('detail button ditekan');
     const detailUrl = `/detail/${restaurant.id}`;
 
     page(detailUrl);
@@ -44,59 +50,62 @@ export function createDetailRestaurant(restaurant) {
   detailRestaurant.className = 'restaurant-detail';
 
   const imageUrl = `https://restaurant-api.dicoding.dev/images/large/${restaurant.pictureId}`;
-  const addressIcon = '<i class="fa fa-map-marker"></i>';
-  const descriptionIcon = '<i class="fa fa-align-left"></i>';
-  const cityIcon = '<i class="fa fa-building"></i>';
-  const categoryIcon = '<i class="fa fa-list-alt"></i>';
-  const foodIcon = '<i class="fa fa-birthday-cake"></i>';
-  const drinkIcon = '<i class="fa fa-coffee"></i>';
-  const ratingIcon = '<i class="fa fa-star star-icon"></i>';
-  const reviewCustomer = '<i class="fa fa-comment"></i>';
-  const userReview = '<i class="fa fa-user"></i>';
+
+  const icons = {
+    address: '<i class="fa fa-map-marker"></i>',
+    description: '<i class="fa fa-align-left"></i>',
+    city: '<i class="fa fa-building"></i>',
+    category: '<i class="fa fa-list-alt"></i>',
+    food: '<i class="fa fa-birthday-cake"></i>',
+    drink: '<i class="fa fa-coffee"></i>',
+    rating: '<i class="fa fa-star star-icon"></i>',
+    reviewCustomer: '<i class="fa fa-comment"></i>',
+    userReview: '<i class="fa fa-user"></i>',
+  };
 
   detailRestaurant.innerHTML = `
-      <img src="${imageUrl}" alt="${restaurant.name}" crossorigin="anonymous"/>
-      <h1>${restaurant.name}</h1>
-      <p>${ratingIcon} <span class="rating">${restaurant.rating}</span></p>
-      <p>${addressIcon} ${restaurant.address}</p>
-      <p>${descriptionIcon} <strong>Description</strong>: ${restaurant.description}</p>
-      <p>${cityIcon} <strong>City</strong>: ${restaurant.city}</p>
-      <p>${categoryIcon} <strong>Category</strong>: ${restaurant.categories.map((category) => category.name).join(', ')}</p>
-      <p>${foodIcon} <strong>Foods</strong>: ${restaurant.menus.foods.map((food) => food.name).join(', ')}</p>
-      <p>${drinkIcon} <strong>Drinks</strong>: ${restaurant.menus.drinks.map((drink) => drink.name).join(', ')}</p>
-      <fieldset class="fieldset-container">
-        <legend>${reviewCustomer} Customer Reviews:</legend>
-        <ul class="customer-reviews-list">
-          ${restaurant.customerReviews.map((review) => `
-            <li class="customer-review">
-            ${userReview} <strong>${review.name} (${review.date}):</strong> <br><br> ${review.review}
-            </li>
-          `).join('')}
-        </ul>
-      </fieldset>
-      <button id="favorite-button" class="favorit-button" data-restaurant-id="${restaurant.id}">
-         <i class="fa fa-heart-o" aria-hidden="true"></i>
-      </button>
-    `;
+    <img src="${imageUrl}" alt="${restaurant.name}" crossorigin="anonymous"/>
+    <h1>${restaurant.name}</h1>
+    <p>${icons.rating} <span class="rating">${restaurant.rating}</span></p>
+    <p>${icons.address} ${restaurant.address}</p>
+    <p>${icons.description} <strong>Description</strong>: ${restaurant.description}</p>
+    <p>${icons.city} <strong>City</strong>: ${restaurant.city}</p>
+    <p>${icons.category} <strong>Category</strong>: ${restaurant.categories.map((category) => category.name).join(', ')}</p>
+    <p>${icons.food} <strong>Foods</strong>: ${restaurant.menus.foods.map((food) => food.name).join(', ')}</p>
+    <p>${icons.drink} <strong>Drinks</strong>: ${restaurant.menus.drinks.map((drink) => drink.name).join(', ')}</p>
+    <fieldset class="fieldset-container">
+      <legend>${icons.reviewCustomer} Customer Reviews:</legend>
+      <ul class="customer-reviews-list">
+        ${restaurant.customerReviews.map((review) => `
+          <li class="customer-review">
+          ${icons.userReview} <strong>${review.name} (${review.date}):</strong> <br><br> ${review.review}
+          </li>
+        `).join('')}
+      </ul>
+    </fieldset>
+    <button id="like-button" class="favorit-button" data-restaurant-id="${restaurant.id}">
+    </button>
+  `;
 
   let isFavorite = false;
+
+  const favoriteButton = detailRestaurant.querySelector('#like-button');
 
   FavoriteRestaurantIdb.getRestaurant(restaurant.id)
     .then((restaurantData) => {
       isFavorite = !!restaurantData;
-      const favoriteButton = detailRestaurant.querySelector('#favorite-button');
       if (favoriteButton) {
-        favoriteButton.innerHTML = isFavorite
-          ? '<i class="fa fa-heart" aria-hidden="true"></i>'
-          : '<i class="fa fa-heart-o" aria-hidden="true"></i>';
+        favoriteButton.innerHTML = isFavorite ? 'Remove from Favorites' : 'Add to Favorites';
       }
+    })
+    .catch((error) => {
+      console.error('Error getting restaurant data:', error);
     });
 
   detailRestaurant.addEventListener('click', async (event) => {
     const { target } = event;
-    if (target.classList.contains('favorit-button')) {
+    if (target.id === 'like-button') {
       const restaurantId = target.getAttribute('data-restaurant-id');
-
       const restaurantData = {
         id: restaurantId,
         name: restaurant.name,
@@ -110,16 +119,25 @@ export function createDetailRestaurant(restaurant) {
         image: `https://restaurant-api.dicoding.dev/images/large/${restaurant.pictureId || '1'}`,
       };
 
-      if (isFavorite) {
-        await FavoriteRestaurantIdb.deleteRestaurant(restaurantId);
-        target.innerHTML = '<i class="fa fa-heart-o" aria-hidden="true"></i>';
-      } else {
-        await FavoriteRestaurantIdb.putRestaurant(restaurantData);
-        target.innerHTML = '<i class="fa fa-heart" aria-hidden="true"></i>';
-      }
+      try {
+        if (isFavorite) {
+          await FavoriteRestaurantIdb.deleteRestaurant(restaurantId);
+        } else {
+          await FavoriteRestaurantIdb.putRestaurant(restaurantData);
+        }
 
-      // Toggle the favorite status
-      isFavorite = !isFavorite;
+        // Toggle the favorite status
+        isFavorite = !isFavorite;
+
+        // Update the favorite button icon
+        if (favoriteButton) {
+          favoriteButton.innerHTML = isFavorite ? 'Add to Favorites' : 'Remove from Favorites';
+        }
+
+        console.log(`Favorite status toggled successfully. Restaurant ID: ${restaurantId}, isFavorite: ${isFavorite}`);
+      } catch (error) {
+        console.error('Error updating favorite status:', error);
+      }
     }
   });
 
